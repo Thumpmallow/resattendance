@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Riverside Attendance</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+        }
+        .button {
+            border: none;
+            text-align: center;
+            display: inline-block;
+            padding: 20px;
+            transition: background-color 0.3s ease;
+            margin-right: 380px;
+        }
+        .button img {
+            width: 200px;
+            height: 200px;
+        }
+        .button span {
+            display: block;
+            margin-top: 10px;
+        }
+        #officeDisplay, #studentSignIn {
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <h1>Riverside Attendance</h1>
+    <button class="button" onclick="showStudentSignIn()">
+        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTXTsm_iUTVn9GfYn5cxHBziIhQK210DdvroZCgg9uj1A&s" alt="Pencil">
+        <span>Student Sign In</span>
+    </button>
+    <button class="button" onclick="showOfficeDisplay()">
+        <img src="data:image/jpeg;base64,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" alt="Computer">
+        <span>Office Display</span>
+    </button>
+
+    <!-- Rest of your HTML code -->
+
+</body>
+</html>
+
+
+    <div id="studentSignIn">
+        <input type="email" id="email" placeholder="Enter your email" pattern=".+@studentokaloosaschools.com">
+        <button onclick="submitEmail()">Submit</button>
+    </div>
+
+    <div id="officeDisplay">
+        <input type="password" id="password" placeholder="Enter password">
+        <button onclick="checkPassword()">Submit</button>
+        <p id="displayEmail"></p>
+    </div>
+
+    <script>
+        var emailInput = document.getElementById('email');
+        var displayEmail = document.getElementById('displayEmail');
+        var passwordInput = document.getElementById('password');
+        var emailLog = [];
+
+        function showStudentSignIn() {
+            document.getElementById('studentSignIn').style.display = 'block';
+            document.getElementById('officeDisplay').style.display = 'none';
+        }
+
+        function showOfficeDisplay() {
+            document.getElementById('officeDisplay').style.display = 'block';
+            document.getElementById('studentSignIn').style.display = 'none';
+        }
+
+        function submitEmail() {
+            emailLog.push(emailInput.value);
+            emailInput.value = '';
+        }
+
+        function checkPassword() {
+            if (passwordInput.value === '8908') {
+                displayEmail.innerText = emailLog.join('\n');
+            } else {
+                alert('Access denied');
+            }
+            passwordInput.value = '';
+        }
+    </script>
+</body>
+</html>
+
+// server.js
+const express = require('express');
+const app = express();
+const port = 3000;
+
+app.use(express.static('public'));
+
+app.listen(port, () => {
+  console.log(`Server is running at http://localhost:${port}`);
+});
+
+html {
+  height: 100%;
+  width: 100%;
+} 
+    .button {
+        border-radius: 50px;
+    }
