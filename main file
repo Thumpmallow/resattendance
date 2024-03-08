@@ -87,22 +87,3 @@
     </script>
 </body>
 </html>
-
-// server.js
-const express = require('express');
-const app = express();
-const port = 3000;
-
-app.use(express.static('public'));
-
-app.listen(port, () => {
-  console.log(`Server is running at http://localhost:${port}`);
-});
-
-html {
-  height: 100%;
-  width: 100%;
-} 
-    .button {
-        border-radius: 50px;
-    }
